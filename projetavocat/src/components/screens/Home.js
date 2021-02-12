@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Profile = () => {
+const Home = () => {
   return (
     <>
       <Wrapper>
-        <H2>Welcome to Your profile</H2>
+        <H2>Home</H2>
       </Wrapper>
     </>
   );
 };
 
-export default Profile;
+export default Home;
 
 const Wrapper = styled.div``;
 const H2 = styled.h2``;
