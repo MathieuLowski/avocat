@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, useHistory, NavLink } from "react-router-dom";
 import { UserContext } from "../App";
 import styled from "styled-components";
+
 import UserBar from "./UserBar";
 
 const NavBar = () => {
@@ -16,14 +17,15 @@ const NavBar = () => {
             <Link to="/home">
               <Logo>Avocat</Logo>
             </Link>
-            <Button>
+
+            <LoggerTools>
               <Link to="/login">
                 <Button>Log In</Button>
               </Link>
               <Link to="/signup">
                 <Button>Signup</Button>
               </Link>
-            </Button>
+            </LoggerTools>
           </LoggedOut>
         </>
       );
@@ -43,26 +45,20 @@ const NavBar = () => {
                   onClick={() => {
                     localStorage.clear();
                     dispatch({ type: "CLEAR" });
-                    history.push("/signin");
+                    history.push("/login");
                   }}
                 >
                   LogOut
                 </Button>
               </CornerDiv>
             </TopBar>
-            <SideBar>
-              <UserBar />
-            </SideBar>
+            <SideBar></SideBar>
           </LogIn>
         </>
       );
     }
   };
-  return (
-    <header>
-      <Wrapper>{renderList()}</Wrapper>
-    </header>
-  );
+  return <Wrapper>{renderList()}</Wrapper>;
 };
 
 export default NavBar;
@@ -81,7 +77,9 @@ export default NavBar;
   <Button>Profile</Button>
 </Link> */
 }
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  background-color: #3e464d;
+`;
 const LoggedOut = styled.div`
   margin: 5px;
   display: flex;
@@ -101,16 +99,24 @@ const TopBar = styled.div`
 `;
 
 const CornerDiv = styled.div``;
+
+const LoggerTools = styled.div``;
+
 const Button = styled.button`
-  font-size: 18px;
+  font-family: "Oleo Script", cursive;
+  height: 50px;
+  font-size: 22px;
   color: white;
-  background: none;
-  border: white solid 1px;
-  padding: 0px;
-  margin: 0px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  border-radius: 5px;
+  width: 80px;
+  outline: none;
 `;
-const Logo = styled.h1`
+const Logo = styled.div`
   color: white;
+  font-size: 25px;
 `;
 
 const SideBar = styled.div`

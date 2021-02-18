@@ -20,7 +20,7 @@ mongoose.connection.on("error", (err) => {
 //  You require the user from user.js.
 //  Remember this is your blueprint of how a new user is supose to "looklike"
 require("./models/user");
-//require("./models/post");
+require("./models/post");
 
 app.use(express.json());
 app.use(require("./routes/auth"));

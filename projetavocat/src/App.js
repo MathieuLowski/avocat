@@ -8,7 +8,14 @@ import Signup from "./components/screens/Signup";
 import Login from "./components/screens/Login";
 import NavBar from "./components/NavBar";
 import UserBar from "./components/UserBar";
+import Vitrine from "./components/screens/loggedInPages/Vitrine";
+import createvitrine from "./components/screens/loggedInPages/CreateVitrine";
+import RendezVous from "./components/screens/loggedInPages/RendezVous";
+import Pause from "./components/screens/loggedInPages/Pause";
+import Dashboard from "./components/screens/loggedInPages/DashBoard";
+
 import { reducer, initialState } from "./reducers/useReducer";
+import CreateVitrine from "./components/screens/loggedInPages/CreateVitrine";
 
 //First, we create a Context,
 //and make it available to the React tree with <Context.Provider>
@@ -40,8 +47,20 @@ const Routing = () => {
       <Route exact path="/login">
         <Login />
       </Route>
-      <Route exact path="/profile">
-        <Profile />
+      <Route exact path="/vitrine">
+        <Vitrine />
+      </Route>
+      <Route exact path="/createvitrine">
+        <CreateVitrine />
+      </Route>
+      <Route exact path="/rendezvous">
+        <RendezVous />
+      </Route>
+      <Route exact path="/pause">
+        <Pause />
+      </Route>
+      <Route exact path="/dashboard">
+        <Dashboard />
       </Route>
     </Switch>
   );
@@ -50,22 +69,48 @@ const Routing = () => {
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  return (
-    <UserContext.Provider value={{ state, dispatch }}>
-      <GlobalStyles />
-      <Wrapper>
-        <BrowserRouter>
-          <NavBar />
-
-          <Routing />
-        </BrowserRouter>
-      </Wrapper>
-    </UserContext.Provider>
-  );
+  if (!state) {
+    return (
+      <>
+        <UserContext.Provider value={{ state, dispatch }}>
+          <GlobalStyles />
+          <Wrapper>
+            <BrowserRouter>
+              <NavBar />
+              <Routing />
+            </BrowserRouter>
+          </Wrapper>
+        </UserContext.Provider>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <UserContext.Provider value={{ state, dispatch }}>
+          <GlobalStyles />
+          <Wrapper>
+            <BrowserRouter>
+              <NavBar />
+              <Molder>
+                <UserBar />
+                <Routing />
+              </Molder>
+            </BrowserRouter>
+          </Wrapper>
+        </UserContext.Provider>
+      </>
+    );
+  }
 }
 
 export default App;
 
 const Wrapper = styled.div`
-  background-color: #3e464d;
+  background-color: #cfcfcf;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Molder = styled.div`
+  display: flex;
 `;

@@ -55,7 +55,7 @@ table {
 html {
 	scroll-padding-top: 125px;
 	scroll-behavior: smooth;
-    background-color:#3e464d;
+    background-color: #cfcfcf;
     color: white;
 }
 

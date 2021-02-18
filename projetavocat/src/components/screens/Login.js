@@ -36,7 +36,7 @@ const Login = () => {
           localStorage.setItem("jwt", data.token);
           localStorage.setItem("user", JSON.stringify(data.user));
           dispatch({ type: "USER", payload: data.user });
-          history.push("/profile");
+          history.push("/vitrine");
         }
       })
       .catch((err) => {
@@ -47,13 +47,13 @@ const Login = () => {
   return (
     <>
       <Wrapper>
-        <H2>Login</H2>
         <Form
           onSubmit={(ev) => {
             ev.preventDefault();
             postData();
           }}
         >
+          <H2>Login</H2>
           <Input
             type="text"
             placeholder="Email"
@@ -71,6 +71,9 @@ const Login = () => {
             }}
           />
           <Button type="submit">Login</Button>
+          <H5>
+            <Link to="/signup">I don't have an account yet</Link>
+          </H5>
         </Form>
       </Wrapper>
     </>
@@ -79,8 +82,59 @@ const Login = () => {
 
 export default Login;
 
-const Wrapper = styled.div``;
-const H2 = styled.h2``;
-const Input = styled.input``;
-const Form = styled.form``;
-const Button = styled.button``;
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 500px;
+`;
+const H2 = styled.h2`
+  font-size: 35px;
+  margin: 20px;
+`;
+const Input = styled.input`
+  font-size: 18px;
+  padding: 5px;
+  margin: 15px;
+  border: none;
+  border-radius: 6rem;
+  outline: none;
+  border-bottom: black 1px solid;
+`;
+const Button = styled.button`
+  height: 55px;
+  font-size: 18px;
+  margin: 15px;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  background-color: #fafafa;
+  background: linear-gradient(to right, #ffb442 0%, #d40fb3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font: {
+    size: 20vw;
+    family: $font;
+  }
+  font-weight: 600;
+  border-radius: 5px;
+  width: 200px;
+  outline: none;
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
+  :hover {
+    background-color: #fafafa;
+    border: 3px solid;
+    border-radius: 5px;
+    border-image-source: linear-gradient(45deg, #ffb442, #d40fb3);
+    border-image-slice: 1;
+  }
+`;
+const H5 = styled.h5``;
