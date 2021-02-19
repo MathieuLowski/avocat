@@ -4,15 +4,15 @@ import styled from "styled-components";
 
 const CreateVitrine = () => {
   const [nomAvocat, setNomAvocat] = useState("");
-  const [nomCabinet, setNomCabinet] = useState("");
-  const [langues, setLangues] = useState("");
-  const [palettePrix, setPalettePrix] = useState("");
-  const [domaine, setDomaine] = useState("");
-  const [aneeExperience, setAnneExperience] = useState("");
-  const [adresseCabinet, setAdresseCabinet] = useState("");
-  const [description, setDescription] = useState("");
-  const [regionDeservies, setRegionDeservie] = useState("");
-  const [formation, setFormation] = useState("");
+  // const [nomCabinet, setNomCabinet] = useState("");
+  // const [langues, setLangues] = useState("");
+  // const [palettePrix, setPalettePrix] = useState("");
+  // const [domaine, setDomaine] = useState("");
+  // const [aneeExperience, setAnneExperience] = useState("");
+  // const [adresseCabinet, setAdresseCabinet] = useState("");
+  // const [description, setDescription] = useState("");
+  // const [regionDeservies, setRegionDeservie] = useState("");
+  // const [formation, setFormation] = useState("");
 
   const update = () => {
     fetch("/ajoutvitrine", {
@@ -23,23 +23,14 @@ const CreateVitrine = () => {
       },
       body: JSON.stringify({
         nomAvocat,
-        nomCabinet,
-        langues,
-        palettePrix,
-        domaine,
-        aneeExperience,
-        adresseCabinet,
-        description,
-        regionDeservies,
-        formation,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("RESPONSE", data);
+        console.log("ANSWER", data);
       })
       .catch((err) => {
-        console.log("Error: ", err);
+        console.log("ERRORE!: ", err);
       });
   };
 
@@ -61,7 +52,7 @@ const CreateVitrine = () => {
               setNomAvocat(ev.target.value);
             }}
           />
-          <Input
+          {/* <Input
             type="text"
             placeholder="nomCabinet"
             value={nomCabinet}
@@ -132,7 +123,7 @@ const CreateVitrine = () => {
             onChange={(ev) => {
               setFormation(ev.target.value);
             }}
-          />
+          /> */}
           <Button type="submit">Mettre a jour</Button>
         </Form>
       </Wrapper>

@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const PORT = 5000;
 const { MONGOURI } = require("./config/keys");
+//const requireLogin = require("./middleware/requireLogin");
 
 mongoose.connect(MONGOURI, {
   useNewUrlParser: true,
@@ -20,10 +21,12 @@ mongoose.connection.on("error", (err) => {
 //  You require the user from user.js.
 //  Remember this is your blueprint of how a new user is supose to "looklike"
 require("./models/user");
-require("./models/post");
+//require("./models/post");
+require("./models/userCard");
 
 app.use(express.json());
 app.use(require("./routes/auth"));
+app.use(require("./routes/userCard"));
 //app.use(require("./routes/post"));
 
 app.get("/", (req, res) => {

@@ -17,7 +17,7 @@ const Login = () => {
     ) {
       return console.log("ERROR, Invalid email");
     }
-    fetch("./login", {
+    fetch("/login", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
