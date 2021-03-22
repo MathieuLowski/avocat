@@ -1,18 +1,46 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const CreateVitrine = () => {
   const [nomAvocat, setNomAvocat] = useState("");
-  // const [nomCabinet, setNomCabinet] = useState("");
-  // const [langues, setLangues] = useState("");
-  // const [palettePrix, setPalettePrix] = useState("");
-  // const [domaine, setDomaine] = useState("");
-  // const [aneeExperience, setAnneExperience] = useState("");
-  // const [adresseCabinet, setAdresseCabinet] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [regionDeservies, setRegionDeservie] = useState("");
-  // const [formation, setFormation] = useState("");
+  const [nomCabinet, setNomCabinet] = useState("");
+  const [langues, setLangues] = useState("");
+  const [palettePrix, setPalettePrix] = useState("");
+  const [domaine, setDomaine] = useState("");
+  const [aneeExperience, setAnneExperience] = useState("");
+  const [adresseCabinet, setAdresseCabinet] = useState("");
+  const [description, setDescription] = useState("");
+  const [regionDeservies, setRegionDeservie] = useState("");
+  const [formation, setFormation] = useState("");
+  const [french, setFrench] = useState(false);
+  const [english, setEnglish] = useState(false);
+  const [spanish, setSpanish] = useState(false);
+  const [italian, setItalian] = useState(false);
+  const [arabic, setArabic] = useState(false);
+  const [indian, setIndian] = useState(false);
+  const [chinese, SetChinese] = useState(false);
+
+  const history = useHistory();
+
+  const userCard = {
+    nomAvocat,
+    nomCabinet,
+    langues,
+    palettePrix,
+    domaine,
+    aneeExperience,
+    description,
+    regionDeservies,
+    formation,
+    french,
+    english,
+    spanish,
+    italian,
+    arabic,
+    indian,
+    chinese,
+  };
 
   const update = () => {
     fetch("/ajoutvitrine", {
@@ -22,7 +50,7 @@ const CreateVitrine = () => {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
       body: JSON.stringify({
-        nomAvocat,
+        userCard,
       }),
     })
       .then((res) => res.json())
@@ -41,6 +69,7 @@ const CreateVitrine = () => {
           onSubmit={(ev) => {
             ev.preventDefault();
             update();
+            // history.push("/vitrine");
           }}
         >
           <H2>CreateVitrine</H2>
@@ -52,7 +81,7 @@ const CreateVitrine = () => {
               setNomAvocat(ev.target.value);
             }}
           />
-          {/* <Input
+          <Input
             type="text"
             placeholder="nomCabinet"
             value={nomCabinet}
@@ -60,13 +89,48 @@ const CreateVitrine = () => {
               setNomCabinet(ev.target.value);
             }}
           />
+          <Label>French</Label>
           <Input
-            type="text"
-            placeholder="Langues"
-            value={langues}
-            onChange={(ev) => {
-              setLangues(ev.target.value);
-            }}
+            type="checkbox"
+            checked={french}
+            onClick={() => setFrench(!french)}
+          />
+          <Label>Anglais</Label>
+          <Input
+            type="checkbox"
+            checked={english}
+            onClick={() => setEnglish(!english)}
+          />
+          <Label>Espagnol</Label>
+          <Input
+            type="checkbox"
+            checked={spanish}
+            onClick={() => setSpanish(!spanish)}
+          />
+          <Label>Italien</Label>
+          <Input
+            type="checkbox"
+            checked={italian}
+            onClick={() => setItalian(!italian)}
+          />
+          <Label>Arabe</Label>
+          <Input
+            type="checkbox"
+            checked={arabic}
+            onClick={() => setArabic(!arabic)}
+          />
+
+          <Label>Indien</Label>
+          <Input
+            type="checkbox"
+            checked={indian}
+            onClick={() => setIndian(!indian)}
+          />
+          <Label>Chinois</Label>
+          <Input
+            type="checkbox"
+            checked={chinese}
+            onClick={() => SetChinese(!chinese)}
           />
           <Input
             type="text"
@@ -123,7 +187,7 @@ const CreateVitrine = () => {
             onChange={(ev) => {
               setFormation(ev.target.value);
             }}
-          /> */}
+          />
           <Button type="submit">Mettre a jour</Button>
         </Form>
       </Wrapper>
@@ -150,12 +214,13 @@ const Form = styled.form`
   align-items: center;
   flex-direction: column;
 `;
+
+const Label = styled.label``;
 const Input = styled.input`
   font-size: 18px;
   padding: 5px;
   margin: 15px;
   border: none;
-
   outline: none;
   border-bottom: black 1px solid;
 `;

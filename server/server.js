@@ -3,7 +3,6 @@ const app = express();
 const mongoose = require("mongoose");
 const PORT = 5000;
 const { MONGOURI } = require("./config/keys");
-//const requireLogin = require("./middleware/requireLogin");
 
 mongoose.connect(MONGOURI, {
   useNewUrlParser: true,
